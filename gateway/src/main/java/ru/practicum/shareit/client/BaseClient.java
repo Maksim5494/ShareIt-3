@@ -67,8 +67,8 @@ public class BaseClient {
         return makeAndSendRequest(HttpMethod.PATCH, path, userId, parameters, body);
     }
 
-    protected ResponseEntity<Object> delete(String path) {
-        return delete(path, null, null);
+    protected void delete(String path) {
+        delete(path, null, null);
     }
 
     protected ResponseEntity<Object> delete(String path, long userId) {
