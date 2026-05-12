@@ -28,6 +28,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import org.springframework.data.domain.Pageable;
 
 @WebMvcTest(ItemRequestController.class)
 @AutoConfigureMockMvc
@@ -104,15 +105,16 @@ class ItemRequestControllerTest {
 
     @Test
     void findAllUsersItemRequest() throws Exception {
-        when(itemRequestService.findAllUsersItemRequest(any())).thenReturn(Collections.emptyList());
+        when(itemRequestService.findAllUsersItemRequest(any(Pageable.class)))
+                .thenReturn(Collections.emptyList());
 
-        mockMvc.perform(get("/requests/all?from=0&size=10")
-                        .header("X-Sharer-User-Id", 1L)
-                        .characterEncoding(StandardCharsets.UTF_8)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/requests/all")
+                        .param("from", "0")
+                        .param("size", "10"))
                 .andExpect(status().isOk())
                 .andExpect(content().json("[]"));
-        verify(itemRequestService, times(1)).findAllUsersItemRequest(any());
+
+        verify(itemRequestService, times(1))
+                .findAllUsersItemRequest(any(Pageable.class));
     }
 }
