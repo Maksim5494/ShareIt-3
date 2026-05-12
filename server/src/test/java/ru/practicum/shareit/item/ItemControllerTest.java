@@ -73,10 +73,8 @@ class ItemControllerTest {
 
     @Test
     void findAll() throws Exception {
-        // given
         when(itemService.findItemsByUserId(anyLong())).thenReturn(Collections.emptyList());
 
-        // when + then
         mockMvc.perform(get("/items")
                         .header("X-Sharer-User-Id", 1L)
                         .characterEncoding(StandardCharsets.UTF_8)
@@ -89,11 +87,9 @@ class ItemControllerTest {
 
     @Test
     void getItemDto() throws Exception {
-        // given
         ItemInfoDto itemInfoDto = getItemInfoDto();
         when(itemService.findItemById(anyLong(), anyLong())).thenReturn(itemInfoDto);
 
-        // when + then
         mockMvc.perform(get("/items/1")
                         .header("X-Sharer-User-Id", 1L)
                         .characterEncoding(StandardCharsets.UTF_8)
@@ -108,11 +104,9 @@ class ItemControllerTest {
 
     @Test
     void create() throws Exception {
-        // given
         ItemDto itemDto = getTestItemDto();
         when(itemService.create(anyLong(), any())).thenReturn(itemDto);
 
-        // when + then
         mockMvc.perform(post("/items")
                         .header("X-Sharer-User-Id", 1L)
                         .characterEncoding(StandardCharsets.UTF_8)
@@ -130,11 +124,9 @@ class ItemControllerTest {
 
     @Test
     void update() throws Exception {
-        // given
         ItemDto itemDto = getTestItemDto();
         when(itemService.update(anyLong(), any(), anyLong())).thenReturn(itemDto);
 
-        // when + then
         mockMvc.perform(patch("/items/1")
                         .header("X-Sharer-User-Id", 1L)
                         .characterEncoding(StandardCharsets.UTF_8)
@@ -152,11 +144,9 @@ class ItemControllerTest {
 
     @Test
     void addComment() throws Exception {
-        // given
         CommentDto commentDto = getCommentDto();
         when(itemService.addComment(anyLong(), anyLong(), any())).thenReturn(commentDto);
 
-        // when + then
         mockMvc.perform(post("/items/1/comment")
                         .header("X-Sharer-User-Id", 1L)
                         .characterEncoding(StandardCharsets.UTF_8)
@@ -173,10 +163,8 @@ class ItemControllerTest {
 
     @Test
     void searchItemDto() throws Exception {
-        // given
         when(itemService.findItemsByText(anyString())).thenReturn(Collections.emptyList());
 
-        // when + then
         mockMvc.perform(get("/items/search?text=test")
                         .header("X-Sharer-User-Id", 1L)
                         .characterEncoding(StandardCharsets.UTF_8)

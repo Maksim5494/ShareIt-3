@@ -54,12 +54,10 @@ class ItemRequestControllerTest {
 
     @Test
     void create() throws Exception {
-        // given
         ItemRequestDto itemRequestDto = getItemRequestDto();
         ItemRequestRequestDto itemRequestRequestDto = new ItemRequestRequestDto(1L, "TestItemRequestRequestDescription");
         when(itemRequestService.create(any())).thenReturn(itemRequestDto);
 
-        // when + then
         mockMvc.perform(post("/requests")
                         .header("X-Sharer-User-Id", 1L)
                         .characterEncoding(StandardCharsets.UTF_8)
@@ -75,10 +73,8 @@ class ItemRequestControllerTest {
 
     @Test
     void findAll() throws Exception {
-        // given
         when(itemRequestService.findAllByUserId(anyLong())).thenReturn(Collections.emptyList());
 
-        // when + then
         mockMvc.perform(get("/requests")
                         .header("X-Sharer-User-Id", 1L)
                         .characterEncoding(StandardCharsets.UTF_8)
@@ -91,11 +87,9 @@ class ItemRequestControllerTest {
 
     @Test
     void findItemRequestById() throws Exception {
-        // given
         ItemRequestDto itemRequestDto = getItemRequestDto();
         when(itemRequestService.findItemRequestById(anyLong())).thenReturn(itemRequestDto);
 
-        // when + then
         mockMvc.perform(get("/requests/1")
                         .header("X-Sharer-User-Id", 1L)
                         .characterEncoding(StandardCharsets.UTF_8)
@@ -110,10 +104,8 @@ class ItemRequestControllerTest {
 
     @Test
     void findAllUsersItemRequest() throws Exception {
-        // given
         when(itemRequestService.findAllUsersItemRequest(any())).thenReturn(Collections.emptyList());
 
-        // when + then
         mockMvc.perform(get("/requests/all?from=0&size=10")
                         .header("X-Sharer-User-Id", 1L)
                         .characterEncoding(StandardCharsets.UTF_8)

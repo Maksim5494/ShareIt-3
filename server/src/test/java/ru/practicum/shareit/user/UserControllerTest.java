@@ -50,10 +50,8 @@ class UserControllerTest {
 
     @Test
     void findAll() throws Exception {
-        // given
         when(userService.findAll()).thenReturn(Collections.emptyList());
 
-        // when + then
         mockMvc.perform(get("/users")
                         .header("X-Sharer-User-Id", 1L)
                         .characterEncoding(StandardCharsets.UTF_8)
@@ -66,11 +64,9 @@ class UserControllerTest {
 
     @Test
     void getUserDtoById() throws Exception {
-        // given
         UserDto userDto = getUserDto();
         when(userService.getById(anyLong())).thenReturn(userDto);
 
-        // when + then
         mockMvc.perform(get("/users/1")
                         .header("X-Sharer-User-Id", 1L)
                         .characterEncoding(StandardCharsets.UTF_8)
@@ -85,11 +81,9 @@ class UserControllerTest {
 
     @Test
     void update() throws Exception {
-        // given
         UserDto userDto = getUserDto();
         when(userService.update(anyLong(), any())).thenReturn(userDto);
 
-        // when + then
         mockMvc.perform(patch("/users/1")
                         .header("X-Sharer-User-Id", 1L)
                         .characterEncoding(StandardCharsets.UTF_8)
@@ -105,11 +99,9 @@ class UserControllerTest {
 
     @Test
     void create() throws Exception {
-        // given
         UserDto userDto = getUserDto();
         when(userService.create(any())).thenReturn(userDto);
 
-        // when + then
         mockMvc.perform(post("/users")
                         .header("X-Sharer-User-Id", 1L)
                         .characterEncoding(StandardCharsets.UTF_8)
@@ -125,7 +117,7 @@ class UserControllerTest {
 
     @Test
     void delete() throws Exception {
-        // when + then
+
         mockMvc.perform(MockMvcRequestBuilders.delete("/users/1"))
                 .andExpect(status().isOk());
         verify(userService, times(1)).delete(anyLong());

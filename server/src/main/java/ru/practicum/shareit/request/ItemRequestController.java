@@ -1,6 +1,5 @@
 package ru.practicum.shareit.request;
 
-import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
@@ -51,8 +50,8 @@ public class ItemRequestController {
 
     @GetMapping("/all")
     public List<ItemRequestDto> findAllUsersItemRequest(
-            @RequestParam(defaultValue = "0", required = false) @Min(0) int from,
-            @RequestParam(defaultValue = "10", required = false) @Min(1) int size) {
+            @RequestParam(defaultValue = "0") int from,
+            @RequestParam(defaultValue = "10") int size) {
         Pageable pageable = PageRequest.of(from, size, Sort.by("created").descending());
         log.info("Получен HTTP-запрос по адресу /requests/all (метод GET). "
                 + "Вызван метод findAllUsersItemRequest(pageable)");

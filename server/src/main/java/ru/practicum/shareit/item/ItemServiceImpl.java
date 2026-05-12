@@ -61,8 +61,6 @@ public class ItemServiceImpl implements ItemService {
             });
         }
 
-
-
         log.info("Вещь создана");
         return ItemMapper.toItemDto(itemRepository.save(
                 Item.builder()
@@ -115,7 +113,6 @@ public class ItemServiceImpl implements ItemService {
                 .created(LocalDateTime.now())
                 .build()));
     }
-
 
     @Override
     public ItemInfoDto findItemById(Long userId, Long itemId) {
