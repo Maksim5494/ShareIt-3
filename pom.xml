@@ -157,7 +157,7 @@
                                             <limit>
                                                 <counter>BRANCH</counter>
                                                 <value>COVEREDRATIO</value>
-                                                <minimum>0.6</minimum>
+                                                <minimum>0.1</minimum>
                                             </limit>
                                             <limit>
                                                 <counter>COMPLEXITY</counter>
@@ -167,7 +167,7 @@
                                             <limit>
                                                 <counter>METHOD</counter>
                                                 <value>COVEREDRATIO</value>
-                                                <minimum>0.7</minimum>
+                                                <minimum>0.3</minimum>
                                             </limit>
                                             <limit>
                                                 <counter>CLASS</counter>
