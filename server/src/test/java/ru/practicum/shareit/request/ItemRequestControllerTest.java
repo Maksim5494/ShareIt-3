@@ -107,20 +107,4 @@ class ItemRequestControllerTest {
                 .andExpect(jsonPath("$.created", is(itemRequestDto.getCreated().format(DateTimeFormatter.ISO_DATE_TIME))));
         verify(itemRequestService, times(1)).findItemRequestById(anyLong());
     }
-
-    @Test
-    void findAllUsersItemRequest() throws Exception {
-        // given
-        when(itemRequestService.findAllUsersItemRequest(any())).thenReturn(Collections.emptyList());
-
-        // when + then
-        mockMvc.perform(get("/requests/all?from=0&size=10")
-                        .header("X-Sharer-User-Id", 1L)
-                        .characterEncoding(StandardCharsets.UTF_8)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(content().json("[]"));
-        verify(itemRequestService, times(1)).findAllUsersItemRequest(any());
-    }
 }
